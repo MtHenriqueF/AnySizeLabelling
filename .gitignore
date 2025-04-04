@@ -1,0 +1,33 @@
+# Diretórios do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de cache do Python
+.python-version
+
+# Ambiente virtual
+venv/
+.env/
+.venv/
+
+# Arquivos de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de bytecode Python
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Arquivos de pytest
+.pytest_cache/
