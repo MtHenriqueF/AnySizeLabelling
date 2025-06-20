@@ -1,0 +1,172 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>anysize_control &mdash; Documentação AnySizeLabeling 0.0.1</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=aec2756f"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=71a39b36"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            AnySizeLabeling
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">anysize</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AnySizeLabeling</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código do módulo</a></li>
+      <li class="breadcrumb-item active">anysize_control</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código-fonte para anysize_control</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pylibCZIrw</span><span class="w"> </span><span class="kn">import</span> <span class="n">czi</span> <span class="k">as</span> <span class="n">pyczi</span> <span class="c1">#Provavelmente vai sair dessa classe</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">anysize_crop</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImageCropper</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<div class="viewcode-block" id="ImageController">
+<a class="viewcode-back" href="../anysize_control.html#anysize_control.ImageController">[documentos]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ImageController</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">image_path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original_name</span> <span class="o">=</span> <span class="n">image_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original_cropped</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original_cropper</span> <span class="o">=</span> <span class="n">ImageCropper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_cropped</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_cropper</span> <span class="o">=</span> <span class="n">ImageCropper</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ImageController.setOriginalImageCrop">
+<a class="viewcode-back" href="../anysize_control.html#anysize_control.ImageController.setOriginalImageCrop">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setOriginalImageCrop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="nb">slice</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">channel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original_cropper</span><span class="o">.</span><span class="n">setCrop</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="nb">slice</span><span class="p">,</span><span class="n">channel</span><span class="p">,</span><span class="n">time</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ImageController.cropOriginalImage">
+<a class="viewcode-back" href="../anysize_control.html#anysize_control.ImageController.cropOriginalImage">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cropOriginalImage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">image_path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original_cropped</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">original_cropper</span><span class="o">.</span><span class="n">cropImage</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ImageController.setSubImageCrop">
+<a class="viewcode-back" href="../anysize_control.html#anysize_control.ImageController.setSubImageCrop">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setSubImageCrop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_cropper</span><span class="o">.</span><span class="n">setCrop</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="ImageController.cropSubImage">
+<a class="viewcode-back" href="../anysize_control.html#anysize_control.ImageController.cropSubImage">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cropSubImage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_cropped</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_cropper</span><span class="o">.</span><span class="n">cropImage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">original_cropped</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="ImageController.getOriginalCropped">
+<a class="viewcode-back" href="../anysize_control.html#anysize_control.ImageController.getOriginalCropped">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getOriginalCropped</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">original_cropped</span></div>
+
+
+<div class="viewcode-block" id="ImageController.getSubCropped">
+<a class="viewcode-back" href="../anysize_control.html#anysize_control.ImageController.getSubCropped">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getSubCropped</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_cropped</span></div>
+
+    
+<div class="viewcode-block" id="ImageController.getOriginalTopLeft">
+<a class="viewcode-back" href="../anysize_control.html#anysize_control.ImageController.getOriginalTopLeft">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getOriginalTopLeft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">original_cropper</span><span class="o">.</span><span class="n">getTopLeft</span><span class="p">()</span></div>
+
+    
+<div class="viewcode-block" id="ImageController.getSubTopLeft">
+<a class="viewcode-back" href="../anysize_control.html#anysize_control.ImageController.getSubTopLeft">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getSubTopLeft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_cropper</span><span class="o">.</span><span class="n">getTopLeft</span><span class="p">()</span></div>
+</div>
+
+
+    
+
+    
+         
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Direitos autorais 2025, Matheus Ignacio.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
