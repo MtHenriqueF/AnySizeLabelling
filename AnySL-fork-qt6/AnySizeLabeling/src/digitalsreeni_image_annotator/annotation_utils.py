@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QListWidgetItem
-from PyQt5.QtGui import QColor
-from PyQt5.QtCore import Qt
+from PySide6.QtWidgets import QListWidgetItem
+from PySide6.QtGui import QColor
+from PySide6.QtCore import Qt
 
 class AnnotationUtils:
     @staticmethod

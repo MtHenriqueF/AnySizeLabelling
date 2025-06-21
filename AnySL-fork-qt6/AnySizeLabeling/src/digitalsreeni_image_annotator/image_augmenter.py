@@ -4,10 +4,10 @@ import cv2
 import numpy as np
 import json
 
-from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, 
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, 
                              QFileDialog, QLabel, QMessageBox, QSpinBox, 
                              QCheckBox, QDoubleSpinBox, QProgressBar, QApplication)
-from PyQt5.QtCore import Qt
+from PySide6.QtCore import Qt
 
 class ImageAugmenterDialog(QDialog):
     def __init__(self, parent=None):

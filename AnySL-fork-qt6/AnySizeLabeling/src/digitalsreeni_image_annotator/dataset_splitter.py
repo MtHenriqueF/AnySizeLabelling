@@ -2,9 +2,9 @@ import os
 import json
 import shutil
 import random
-from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, QFileDialog, 
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, QFileDialog, 
                              QLabel, QSpinBox, QRadioButton, QButtonGroup, QMessageBox, QComboBox)
-from PyQt5.QtCore import Qt
+from PySide6.QtCore import Qt
 import yaml
 from PIL import Image
 

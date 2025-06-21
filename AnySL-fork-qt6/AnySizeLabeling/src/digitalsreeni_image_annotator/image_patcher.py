@@ -1,12 +1,12 @@
 import os
 import numpy as np
-from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFileDialog, 
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFileDialog, 
                              QSpinBox, QProgressBar, QMessageBox, QListWidget, QDialogButtonBox,
                              QGridLayout, QComboBox, QApplication, QScrollArea, QWidget)
 
 
-from PyQt5.QtCore import Qt, QThread, pyqtSignal
-from PyQt5.QtCore import QTimer, QEventLoop
+from PySide6.QtCore import Qt, QThread, Signal
+from PySide6.QtCore import QTimer, QEventLoop
 from tifffile import TiffFile, imsave
 from PIL import Image
 import traceback
@@ -46,10 +46,10 @@ class DimensionDialog(QDialog):
         return [combo.currentText() for combo in self.combos]
 
 class PatchingThread(QThread):
-    progress = pyqtSignal(int)
-    error = pyqtSignal(str)
-    finished = pyqtSignal()
-    dimension_required = pyqtSignal(object, str)
+    progress = Signal(int)
+    error = Signal(str)
+    finished = Signal()
+    dimension_required = Signal(object, str)
 
 
     def __init__(self, input_files, output_dir, patch_size, overlap, dimensions):

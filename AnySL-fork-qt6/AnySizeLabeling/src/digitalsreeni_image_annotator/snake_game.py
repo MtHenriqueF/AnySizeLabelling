@@ -1,8 +1,8 @@
 import sys
 import random
-from PyQt5.QtWidgets import QApplication, QWidget, QDesktopWidget, QMessageBox
-from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtCore import Qt, QTimer
+from PySide6.QtWidgets import QApplication, QWidget, QMessageBox
+from PySide6.QtGui import QPainter, QColor
+from PySide6.QtCore import Qt, QTimer
 
 class SnakeGame(QWidget):
     def __init__(self):
@@ -27,10 +27,11 @@ class SnakeGame(QWidget):
         self.show()
         
     def center(self):
-        qr = self.frameGeometry()
-        cp = QDesktopWidget().availableGeometry().center()
-        qr.moveCenter(cp)
-        self.move(qr.topLeft())
+        # qr = self.frameGeometry()
+        # cp = QDesktopWidget().availableGeometry().center()
+        # qr.moveCenter(cp)
+        screen_geometry = self.screen().availableGeometry()
+        self.move(screen_geometry.topLeft())
         
     def paintEvent(self, event):
         painter = QPainter(self)

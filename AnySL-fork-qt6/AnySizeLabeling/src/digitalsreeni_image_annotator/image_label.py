@@ -8,10 +8,10 @@ displaying the image and handling annotation interactions.
 Dr. Sreenivas Bhattiprolu
 """
 
-from PyQt5.QtWidgets import QLabel, QApplication, QMessageBox
-from PyQt5.QtGui import (QPainter, QPen, QColor, QFont, QPolygonF, QBrush, QPolygon,
+from PySide6.QtWidgets import QLabel, QApplication, QMessageBox
+from PySide6.QtGui import (QPainter, QPen, QColor, QFont, QPolygonF, QBrush, QPolygon,
                          QPixmap, QImage, QWheelEvent, QMouseEvent, QKeyEvent)
-from PyQt5.QtCore import Qt, QPoint, QPointF, QRectF, QSize
+from PySide6.QtCore import Qt, QPoint, QPointF, QRectF, QSize
 from PIL import Image
 import os
 import warnings

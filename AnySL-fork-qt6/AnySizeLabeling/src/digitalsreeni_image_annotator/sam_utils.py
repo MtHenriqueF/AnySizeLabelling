@@ -1,5 +1,5 @@
 import numpy as np
-from PyQt5.QtGui import QImage, QColor
+from PySide6.QtGui import QImage, QColor
 from ultralytics import SAM
 
 class SAMUtils:
@@ -29,45 +29,46 @@ class SAMUtils:
         fmt = qimage.format()
 
         if fmt == QImage.Format_Grayscale16:
-            buffer = qimage.constBits().asarray(height * width * 2)
+            buffer = qimage.constBits()
             image = np.frombuffer(buffer, dtype=np.uint16).reshape((height, width))
             image_8bit = self.normalize_16bit_to_8bit(image)
             return np.stack((image_8bit,) * 3, axis=-1)
         
         elif fmt == QImage.Format_RGB16:
-            buffer = qimage.constBits().asarray(height * width * 2)
+            buffer = qimage.constBits()
             image = np.frombuffer(buffer, dtype=np.uint16).reshape((height, width))
             image_8bit = self.normalize_16bit_to_8bit(image)
             return np.stack((image_8bit,) * 3, axis=-1)
 
         elif fmt == QImage.Format_Grayscale8:
-            buffer = qimage.constBits().asarray(height * width)
+            buffer = qimage.constBits()
             image = np.frombuffer(buffer, dtype=np.uint8).reshape((height, width))
             return np.stack((image,) * 3, axis=-1)
         
         elif fmt in [QImage.Format_RGB32, QImage.Format_ARGB32, QImage.Format_ARGB32_Premultiplied]:
-            buffer = qimage.constBits().asarray(height * width * 4)
+            buffer = qimage.constBits()
             image = np.frombuffer(buffer, dtype=np.uint8).reshape((height, width, 4))
             return image[:, :, :3]
         
         elif fmt == QImage.Format_RGB888:
-            buffer = qimage.constBits().asarray(height * width * 3)
+            buffer = qimage.constBits()
             image = np.frombuffer(buffer, dtype=np.uint8).reshape((height, width, 3))
             return image
         
         elif fmt == QImage.Format_Indexed8:
-            buffer = qimage.constBits().asarray(height * width)
+            buffer = qimage.constBits()
             image = np.frombuffer(buffer, dtype=np.uint8).reshape((height, width))
             color_table = qimage.colorTable()
             rgb_image = np.zeros((height, width, 3), dtype=np.uint8)
             for y in range(height):
                 for x in range(width):
-                    rgb_image[y, x] = QColor(color_table[image[y, x]]).getRgb()[:3]
+                    rgb_value = color_table[image[y, x]]
+                    rgb_image[y, x] = QColor(rgb_value).getRgb()[:3]
             return rgb_image
         
         else:
             converted_image = qimage.convertToFormat(QImage.Format_RGB32)
-            buffer = converted_image.constBits().asarray(height * width * 4)
+            buffer = converted_image.constBits()
             image = np.frombuffer(buffer, dtype=np.uint8).reshape((height, width, 4))
             return image[:, :, :3]
 

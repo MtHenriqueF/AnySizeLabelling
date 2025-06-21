@@ -4,13 +4,13 @@ import os
 import yaml
 from PIL import Image
 
-from PyQt5.QtCore import QRectF
-from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import QMessageBox, QFileDialog
+from PySide6.QtCore import QRectF
+from PySide6.QtGui import QColor
+from PySide6.QtWidgets import QMessageBox, QFileDialog
 
 import os
 import json
-from PyQt5.QtWidgets import QMessageBox
+from PySide6.QtWidgets import QMessageBox
 
 def import_coco_json(file_path, class_mapping):
     try:

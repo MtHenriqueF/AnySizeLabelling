@@ -2,10 +2,10 @@ import os
 import json
 import numpy as np
 from datetime import datetime
-from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, QFileDialog, 
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, QFileDialog, 
                             QLabel, QProgressDialog, QRadioButton, QButtonGroup, 
                             QMessageBox, QApplication, QGroupBox)
-from PyQt5.QtCore import Qt
+from PySide6.QtCore import Qt
 import pydicom
 from pydicom.pixel_data_handlers.util import apply_voi_lut
 import tifffile

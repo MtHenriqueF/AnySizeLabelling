@@ -1,8 +1,8 @@
 import json
 import os
-from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, 
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, 
                              QFileDialog, QLabel, QMessageBox, QApplication)
-from PyQt5.QtCore import Qt
+from PySide6.QtCore import Qt
 
 class COCOJSONCombinerDialog(QDialog):
     def __init__(self, parent=None):

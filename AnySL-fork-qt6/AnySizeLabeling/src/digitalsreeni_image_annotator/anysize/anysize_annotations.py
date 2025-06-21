@@ -1,6 +1,6 @@
 import numpy as np
 
-from PyQt5.QtWidgets import QLabel
+from PySide6.QtWidgets import QLabel
 class AnnotationUtils(QLabel):
 
     """Classe utilitária para manipulação de anotações de segmentação em imagens"""

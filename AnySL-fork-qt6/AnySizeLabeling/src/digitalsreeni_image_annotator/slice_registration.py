@@ -1,7 +1,7 @@
-from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, QFileDialog, 
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, QFileDialog, 
                             QLabel, QComboBox, QMessageBox, QProgressDialog, QRadioButton,
                             QButtonGroup, QSpinBox, QApplication, QGroupBox, QDoubleSpinBox)
-from PyQt5.QtCore import Qt
+from PySide6.QtCore import Qt
 from pystackreg import StackReg
 from skimage import io
 import tifffile

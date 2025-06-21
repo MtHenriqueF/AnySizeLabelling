@@ -1,13 +1,16 @@
 import os
 import json
-from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
+from PySide6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
                              QPushButton, QFileDialog, QListWidget, QInputDialog, 
                              QLabel, QButtonGroup, QListWidgetItem, QScrollArea, QCheckBox,
                              QSlider, QMenu, QMessageBox, QColorDialog, QDialog, QDoubleSpinBox,
                              QGridLayout, QComboBox, QAbstractItemView, QProgressDialog,
-                             QApplication, QAction, QLineEdit, QTextEdit, QDialogButtonBox, QProgressBar)
-from PyQt5.QtGui import QPixmap, QColor, QIcon, QImage, QFont, QKeySequence, QPalette
-from PyQt5.QtCore import Qt, QThread, QEvent, QObject, pyqtSignal
+                             QApplication, QLineEdit, QTextEdit, QDialogButtonBox, QProgressBar, 
+                             QDialog
+                             )
+
+from PySide6.QtGui import QPixmap, QColor, QIcon, QImage, QFont, QKeySequence, QPalette, QAction
+from PySide6.QtCore import Qt, QThread, QEvent, QObject, Signal
 import numpy as np
 from tifffile import TiffFile
 from czifile import CziFile
@@ -59,8 +62,8 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 
 class TrainingThread(QThread):
-    progress_update = pyqtSignal(str)
-    finished = pyqtSignal(object)
+    progress_update = Signal(str)
+    finished = Signal(object)
 
     def __init__(self, yolo_trainer, epochs, imgsz):
         super().__init__()
@@ -111,7 +114,7 @@ class DimensionDialog(QDialog):
     def get_dimensions(self):
         return [combo.currentText() for combo in self.combos]
     
-from PyQt5.QtCore import QObject, QEvent, Qt
+from PySide6.QtCore import QObject, QEvent, Qt
 
 class WheelToExternalSlider(QObject):
     def __init__(self, vertical_slider, horizontal_slider):
@@ -4403,6 +4406,10 @@ class ImageAnnotator(QMainWindow):
         self.image_label.update()
 
     def IsAnnotationWithinCrop(self, annotation):
+        # if not self.anysize_controller:
+        #     #Nao tem crop por nao ter controller -> está dentro
+        #     return True
+
         x,y = self.anysize_controller.getOriginalTopLeft()
         w = self.anysize_X
         h = self.anysize_Y

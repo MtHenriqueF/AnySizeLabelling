@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import QDialog, QVBoxLayout, QTextBrowser
-from PyQt5.QtCore import Qt
+from PySide6.QtWidgets import QDialog, QVBoxLayout, QTextBrowser
+from PySide6.QtCore import Qt
 from .soft_dark_stylesheet import soft_dark_stylesheet
 from .default_stylesheet import default_stylesheet
 

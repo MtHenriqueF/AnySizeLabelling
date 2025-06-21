@@ -1,7 +1,7 @@
 import os
 from ultralytics import YOLO
-from PyQt5.QtWidgets import QFileDialog, QMessageBox
-from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, 
+from PySide6.QtWidgets import QFileDialog, QMessageBox
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, 
                              QLineEdit, QLabel, QFileDialog, QDialogButtonBox)
 import yaml
 import numpy as np
@@ -12,11 +12,11 @@ from .export_formats import export_yolo_v5plus
 from collections import deque
 
 
-from PyQt5.QtWidgets import QDialog, QVBoxLayout, QTextEdit, QPushButton
-from PyQt5.QtCore import Qt, pyqtSignal, QObject
+from PySide6.QtWidgets import QDialog, QVBoxLayout, QTextEdit, QPushButton
+from PySide6.QtCore import Qt, Signal, QObject
 
 class TrainingInfoDialog(QDialog):
-    stop_signal = pyqtSignal()
+    stop_signal = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -99,7 +99,7 @@ class LoadPredictionModelDialog(QDialog):
             self.yaml_edit.setText(file_name)
         
 class YOLOTrainer(QObject):
-    progress_signal = pyqtSignal(str)
+    progress_signal = Signal(str)
 
     def __init__(self, project_dir, main_window):
         super().__init__()

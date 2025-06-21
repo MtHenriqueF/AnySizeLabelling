@@ -1,9 +1,9 @@
 import os
 import numpy as np
-from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, 
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton, 
                              QFileDialog, QLabel, QMessageBox, QComboBox, QGridLayout, QWidget,
                              QProgressDialog, QApplication)
-from PyQt5.QtCore import Qt
+from PySide6.QtCore import Qt
 from tifffile import TiffFile
 from czifile import CziFile
 from PIL import Image

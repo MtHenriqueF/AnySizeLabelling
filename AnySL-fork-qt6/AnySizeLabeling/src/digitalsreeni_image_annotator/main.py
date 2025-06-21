@@ -9,7 +9,7 @@ Dr. Sreenivas Bhattiprolu
 
 import sys
 import os
-from PyQt5.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication
 from .annotator_window import ImageAnnotator
 
 # To address Linux errors, by removing the QT_QPA_PLATFORM_PLUGIN_PATH 
@@ -25,7 +25,7 @@ def main():
     app = QApplication(sys.argv)
     window = ImageAnnotator()
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
 if __name__ == "__main__":
     main()

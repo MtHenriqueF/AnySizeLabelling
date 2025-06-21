@@ -1,7 +1,7 @@
-from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton, 
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton, 
                              QDateEdit, QLabel, QListWidget, QDialogButtonBox, QFormLayout,
                              QFileDialog, QMessageBox)
-from PyQt5.QtCore import Qt, QDate
+from PySide6.QtCore import Qt, QDate
 import os
 import json
 from datetime import datetime

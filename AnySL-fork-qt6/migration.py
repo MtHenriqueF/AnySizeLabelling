@@ -5,7 +5,7 @@ import os
 # --- CONFIGURAÇÃO ---
 # Caminho para o diretório raiz do projeto que contém o código-fonte.
 # O script irá procurar por arquivos .py recursivamente a partir daqui.
-DIRETORIO_PROJETO = "./AnySL-fork-qt6/AnySizeLabeling" 
+DIRETORIO_PROJETO = "./AnySizeLabeling" 
 # --------------------
 
 
