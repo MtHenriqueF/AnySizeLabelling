@@ -1,4 +1,3 @@
-readme_content = """# Migração PyQt5 para PySide6
 
 O repositório tem como intuito migrar o aplicativo [AnySizeLabelling](https://github.com/LPG-Uerj/AnySizeLabeling) que é um fork do repositorio [digitalsreeni-image-annotator](https://github.com/bnsreenu/digitalsreeni-image-annotator) do Qt5 (PyQt5) para Qt6 (PySide6).
 
