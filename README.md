@@ -13,8 +13,7 @@ A versão **Qt5**, utilizada por muitos projetos baseados em **PyQt5**, está en
 
 O propósito deste projeto é fornecer:
 
-Um **script de migração automática**, que percorre recursivamente os arquivos `.py` de um projeto, substituindo de forma segura os principais pontos de divergência entre PyQt5 e PySide6.
+1. Um **script de migração automática**, que percorre recursivamente os arquivos `.py` de um projeto, substituindo de forma segura os principais pontos de divergência entre PyQt5 e PySide6.
 
-Alterações de algumas descontinuidades e mudanças de lógicas que ocorre entre PyQt5 e PySide6
----
+2. Alterações de algumas descontinuidades e mudanças de lógicas que ocorre entre PyQt5 e PySide6
 
